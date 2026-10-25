@@ -207,8 +207,8 @@
       clear: both;
       position: relative;
       background: #fffdf3;
-      padding: 12px 12px 4px;
-      margin: 18px 0 8px;
+      padding: 12px;
+      margin: 18px 0 14px;
       border: 1px solid #d9c9b0;
       box-shadow: 5px 5px 0 var(--plum);
       transform: rotate(-1deg);
@@ -410,6 +410,7 @@
     }
     /* The green lane where the dog and Cat Martini play */
     .dog-track {
+      clear: both;    /* always sits below any sticker, so it gets the full width */
       height: 110px;
       position: relative;
       overflow: hidden;
@@ -837,7 +838,6 @@
       <img src="images/house.jpg" alt="Westwell House, a red-brick house with a big lawn">
       <div class="stamp">&hearts;<br>1st</div>
       <div class="postmark">TENTERDEN<br>04.09.27</div>
-      <p class="postcard-caption">Greetings from Westwell House!</p>
     </div>
     <!-- The number of days left gets worked out automatically (see the bottom of this file) -->
     <div class="countdown" id="countdown">ONLY ??? DAYS TO GO!</div>
@@ -910,9 +910,8 @@
 
   <section id="kids">
     <img class="sticker left-side" src="images/stickers/pup.webp" alt="" style="--x: -195px; --y: -30px; --tilt: -6deg; --w: 180px">
-    <h2>Little Ones</h2>
-    <p>We love your little ones, but we're kindly asking that <b>children stay at home</b> for our big day.</p>
-    <p><b>Babes in arms are very welcome!</b></p>
+    <h2>Children</h2>
+    <p>This is an adults only event, but babes in arms are welcome.</p>
   </section>
 
   <!-- ==========================================================
@@ -1034,7 +1033,7 @@
 
   <section class="fund" id="fund">
     <img class="sticker right-side" src="images/stickers/doggo.webp" alt="" style="--x: -190px; --y: -30px; --tilt: 6deg; --w: 200px">
-    <h2>The Golden Retriever Fund</h2>
+    <h2>Gifts</h2>
     <!-- The pixel dog gets drawn in here by the code at the bottom -->
     <div class="dog-track" aria-hidden="true">
       <svg id="dog" viewBox="0 0 20 13" shape-rendering="crispEdges"></svg>
@@ -1180,11 +1179,12 @@
 
       if (stage === "walk") {
         dogX += 8;
-        if (dogX > width * 0.3) { stage = "cat-arrives"; catX = width + 10; }
+        if (dogX > width * 0.25) { stage = "cat-arrives"; catX = width + 10; }
       } else if (stage === "cat-arrives") {
         dogX += 4;
         catX -= 12;
-        if (catX <= dogX + 120) { stage = "hiss"; count = 0; }
+        // the cat stops a little way in front of the dog (closer on small screens)
+        if (catX <= dogX + Math.min(120, width * 0.35)) { stage = "hiss"; count = 0; }
       } else if (stage === "hiss") {
         count++;
         dogLegs = dogLegsA;
@@ -1216,8 +1216,9 @@
       var scared = stage === "hiss";
       hiss.style.display = scared ? "block" : "none";
       yikes.style.display = scared ? "block" : "none";
-      place(hiss, catX - 10);
-      place(yikes, dogX - 20);
+      // keep the speech bubbles inside the lane
+      place(hiss, Math.max(0, Math.min(catX - 10, width - hiss.offsetWidth)));
+      place(yikes, Math.max(0, Math.min(dogX - 20, width - yikes.offsetWidth)));
     }, 150);
   }
 
