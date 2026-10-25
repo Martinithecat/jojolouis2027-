@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       HELLO LOUIS! This is your whole website in one file.
+       Text wrapped in arrows and dashes, like this box, is a NOTE.
+       Notes are ignored by the browser, so they're safe to read,
+       change or delete.
+
+       IMPORTANT: this file must sit in the main Wedding Website
+       folder, right next to the "images" folder, or the photos
+       won't show up.
+       ============================================================ -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- The words that appear on the browser tab -->
+  <title>Jojo &amp; Louis 4 EVER ~ 04.09.2027</title>
+
+  <!-- Old-school fonts, borrowed for free from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       THE LOOK (called "CSS")
+       Everything in this <style> section controls colours,
+       fonts and animations. The text itself is further down.
+       ========================================================== */
+
+    /* --- YOUR COLOURS (from the Website Vibe doc).
+           Change a code here and it changes everywhere. --- */
+    :root {
+      --yellow:      #f9de6f;
+      --orange:      #f09056;
+      --red:         #ae2317;
+      --plum:        #b52f70;
+      --pink:        #ed71c0;
+      --tangerine:   #ec6a3f;
+      --light-pink:  #ee8ac1;
+      --hot-pink:    #ea56b4;
+      --paper:       #fff6e4;   /* the cream colour of the main page */
+      --ink:         #4a1030;   /* the colour of normal text */
+    }
+
+    /* --- THE CURSORS: Cat Martini normally, the dog when you point at a link.
+           The two numbers say which point of the picture does the clicking. --- */
+    html {
+      cursor: url("images/cursors/cursor-cat.png") 15 15, auto;
+    }
+    a, a * {
+      cursor: url("images/cursors/cursor-dog.png") 23 14, pointer;
+    }
+
+    /* The polka-dot tiled background behind everything */
+    html, body { overflow-x: clip; }
+    body {
+      margin: 0;
+      background-color: var(--pink);
+      background-image:
+        radial-gradient(var(--yellow) 5px, transparent 6px),
+        radial-gradient(var(--light-pink) 5px, transparent 6px);
+      background-size: 44px 44px, 44px 44px;
+      background-position: 0 0, 22px 22px;
+      font-family: "Comic Sans MS", "Comic Neue", cursive;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    /* The cream "page" in the middle of the screen */
+    .page {
+      position: relative;
+      max-width: 760px;
+      margin: 24px auto;
+      background: var(--paper);
+      border: 8px ridge var(--orange);
+    }
+
+    /* Scrolling banner across the top */
+    .marquee {
+      overflow: hidden;
+      contain: paint;
+      white-space: nowrap;
+      background: var(--plum);
+      color: var(--yellow);
+      font-family: "VT323", monospace;
+      font-size: 26px;
+      padding: 4px 0;
+      border-bottom: 4px solid var(--red);
+    }
+    .marquee span {
+      display: inline-block;
+      /* steps() makes it jump along jerkily instead of gliding smoothly */
+      animation: scroll-left 16s steps(90) infinite;
+    }
+    @keyframes scroll-left {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }   /* half way = the start of the second copy */
+    }
+
+    /* The big title area */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 24px 16px 8px;
+      background: repeating-linear-gradient(45deg, var(--hot-pink) 0 20px, var(--pink) 20px 40px);
+    }
+    h1 {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(22px, 6vw, 40px);
+      line-height: 1.4;
+      margin: 0 0 12px;
+      color: var(--yellow);
+      text-shadow: 4px 4px 0 var(--red), -2px -2px 0 var(--plum);
+    }
+    .date-banner {
+      display: inline-block;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(11px, 3vw, 16px);
+      background: var(--yellow);
+      color: var(--red);
+      border: 4px outset #fff;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+
+    /* The main photo of you two */
+    .hero-photo {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 8px auto 16px;
+      border: 6px double var(--red);
+      background: #fff;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+
+    /* The chunky 3D navigation buttons */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      background: var(--red);
+    }
+    nav a {
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--orange);
+      border: 4px outset var(--yellow);
+      padding: 8px 10px;
+    }
+    nav a:hover  { background: var(--yellow); }
+    nav a:active { border-style: inset; }
+
+    /* Each information box */
+    section {
+      position: relative;
+      margin: 28px 16px;
+      padding: 16px 18px;
+      background: #fff;
+      border: 4px dashed var(--hot-pink);
+    }
+    section:nth-of-type(even) { border-color: var(--tangerine); }
+    h2 {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(14px, 4vw, 18px);
+      line-height: 1.5;
+      margin: 0 0 12px;
+      color: var(--red);
+      text-shadow: 2px 2px 0 var(--yellow);
+    }
+    h3 {
+      font-family: "Permanent Marker", "Comic Sans MS", cursive;
+      font-weight: normal;
+      color: var(--plum);
+      margin: 18px 0 4px;
+    }
+    a { color: #0000ee; }          /* classic 2000s link blue */
+    a:visited { color: #551a8b; }  /* classic 2000s visited purple */
+
+    /* The flashing "NEW!" sticker */
+    .new {
+      display: inline-block;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      background: var(--red);
+      color: var(--yellow);
+      padding: 3px 5px;
+      vertical-align: middle;
+      text-shadow: none;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { visibility: hidden; }
+    }
+
+    /* The countdown, styled like an old digital clock */
+    /* The postcard of the house */
+    .postcard {
+      clear: both;
+      position: relative;
+      background: #fffdf3;
+      padding: 12px 12px 4px;
+      margin: 18px 0 8px;
+      border: 1px solid #d9c9b0;
+      box-shadow: 5px 5px 0 var(--plum);
+      transform: rotate(-1deg);
+    }
+    .postcard img { display: block; width: 100%; border: 3px solid var(--ink); }
+    .postcard-caption {
+      font-family: "Permanent Marker", "Comic Sans MS", cursive;
+      font-size: clamp(18px, 4.5vw, 28px);
+      color: var(--red);
+      text-align: center;
+      margin: 8px 0 6px;
+    }
+    .stamp {             /* the little stamp in the corner */
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 58px;
+      padding: 6px 0;
+      text-align: center;
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+      color: var(--yellow);
+      background: var(--red);
+      border: 4px dotted #fffdf3;
+      transform: rotate(6deg);
+    }
+    .postmark {          /* the round ink postmark */
+      position: absolute;
+      top: 30px;
+      right: 92px;
+      width: 78px;
+      height: 78px;
+      border: 3px solid rgba(40, 20, 60, 0.6);
+      border-radius: 50%;
+      font-family: "VT323", monospace;
+      font-size: 14px;
+      line-height: 1.2;
+      color: rgba(40, 20, 60, 0.7);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-12deg);
+    }
+    @media (max-width: 520px) {
+      .stamp { width: 44px; font-size: 8px; top: 18px; right: 18px; }
+      .postmark { width: 58px; height: 58px; font-size: 11px; right: 66px; top: 22px; }
+    }
+
+    .countdown {
+      clear: both;
+      font-family: "VT323", monospace;
+      font-size: 34px;
+      text-align: center;
+      background: var(--red);
+      color: var(--yellow);
+      border: 6px inset var(--orange);
+      padding: 8px;
+      margin: 12px 0 0;
+    }
+
+    /* Tables (order of the day and hotels) */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 2px solid var(--red);
+      padding: 6px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      font-family: "VT323", monospace;
+      font-size: 22px;
+      font-weight: normal;
+      background: var(--plum);
+      color: var(--yellow);
+    }
+    .timetable td:first-child {
+      font-family: "VT323", monospace;
+      font-size: 22px;
+      white-space: nowrap;
+      background: var(--yellow);
+      width: 1%;
+    }
+    tr:nth-child(even) td:last-child { background: #fdebf5; }
+
+    /* Old-school "polaroid" photos. Add class="polaroid left" or
+       "polaroid right" to make one sit at the side of a box. */
+    .polaroid {
+      display: inline-block;
+      background: #fff;
+      padding: 8px 8px 6px;
+      box-shadow: 3px 3px 0 var(--plum);
+      transform: rotate(var(--tilt, -3deg));
+      position: relative;
+      text-align: center;
+      font-family: "Permanent Marker", "Comic Sans MS", cursive;
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .polaroid img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    /* the strip of sticky tape on top */
+    .polaroid::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 70px;
+      height: 20px;
+      margin-left: -35px;
+      background: rgba(249, 222, 111, 0.75);
+      transform: rotate(-4deg);
+    }
+    .polaroid.right { float: right; width: 190px; margin: 6px 0 12px 16px; }
+    .polaroid.left  { float: left;  width: 190px; margin: 6px 16px 12px 0; }
+    .clear { clear: both; }
+
+    /* The messy photo pile */
+    .album {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 26px 22px;
+      padding: 14px 6px 6px;
+    }
+    .album .polaroid:nth-child(3n+1) { --tilt: 4deg;  top: 6px; }
+    .album .polaroid:nth-child(3n+2) { --tilt: -5deg; top: -4px; }
+    .album .polaroid:nth-child(4n)   { --tilt: 2deg;  left: 6px; }
+    .album .polaroid:hover { transform: rotate(0) scale(1.08); z-index: 5; }
+
+    /* The cork board behind the photo album, with a wooden frame */
+    section.corkboard {
+      background-color: #c4925c;
+      background-image:
+        radial-gradient(#8a5a2b 1px, transparent 1.6px),
+        radial-gradient(#e2b987 1px, transparent 1.6px),
+        radial-gradient(#a8743f 1.5px, transparent 2.2px);
+      background-size: 9px 9px, 13px 13px, 23px 23px;
+      background-position: 0 0, 4px 6px, 10px 3px;
+      border: 12px ridge #8b5a2b;
+    }
+    .corkboard h2 {
+      display: inline-block;
+      background: var(--paper);
+      padding: 8px 12px;
+      transform: rotate(-2deg);
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+    }
+    /* album photos: just the photo in a thin white border, held on with a drawing pin */
+    .album .polaroid { padding: 6px; box-shadow: 3px 4px 0 rgba(60, 30, 10, 0.4); }
+    .album .polaroid::before {
+      width: 16px;
+      height: 16px;
+      top: -6px;
+      margin-left: -8px;
+      border-radius: 50%;
+      transform: none;
+      background: radial-gradient(circle at 35% 35%, #ff9a9a, var(--red) 60%);
+      box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.35);
+      z-index: 2;
+    }
+    .album .polaroid:nth-child(3n+2)::before { background: radial-gradient(circle at 35% 35%, #fff3b0, #d9a800 60%); }
+    .album .polaroid:nth-child(3n)::before   { background: radial-gradient(circle at 35% 35%, #ffc2e6, var(--plum) 60%); }
+
+    /* --- THE CUT-OUT STICKERS of you two ---
+       Each sticker has its own position written on it further down,
+       e.g. style="--x: -150px; --y: 40px; --tilt: -8deg; --w: 190px".
+       --x is how far from the left edge of its box (minus = further left),
+       --y is how far down, --tilt is how wonky, --w is how big. */
+    .sticker {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w, 170px);
+      transform: rotate(var(--tilt, 0deg));
+      filter: drop-shadow(3px 4px 0 rgba(74, 16, 48, 0.35));
+      z-index: 3;
+      pointer-events: auto;
+    }
+    .sticker:hover { animation: wiggle 0.4s steps(2) infinite; }
+    @keyframes wiggle {
+      0%   { transform: rotate(calc(var(--tilt, 0deg) - 4deg)); }
+      100% { transform: rotate(calc(var(--tilt, 0deg) + 4deg)); }
+    }
+    .sticker.right-side { left: auto; right: var(--x); }
+
+    /* The Golden Retriever Fund box */
+    .fund {
+      background: var(--yellow);
+      border: 6px ridge var(--orange);
+      text-align: center;
+    }
+    /* The green lane where the dog and Cat Martini play */
+    .dog-track {
+      height: 110px;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #2f7a1f;
+      border-bottom-width: 8px;           /* the grass */
+      background: linear-gradient(#b6ef93, #6cc24a);
+      margin: 8px 0 16px;
+    }
+    #dog, #cat {
+      position: absolute;
+      bottom: 0;
+      left: -200px;   /* starts off-screen; the code at the bottom moves them */
+    }
+    #dog { width: 80px; }
+    #cat { width: 60px; }
+    .bubble {
+      position: absolute;
+      bottom: 62px;
+      left: -200px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      background: #fff;
+      border: 3px solid #000;
+      padding: 5px 6px;
+      white-space: nowrap;
+      display: none;
+    }
+    .donate-button {
+      display: inline-block;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(11px, 3vw, 14px);
+      line-height: 1.6;
+      color: var(--yellow);
+      background: var(--red);
+      text-decoration: none;
+      padding: 14px 18px;
+      border: 6px outset var(--tangerine);
+      animation: wobble 0.8s steps(2) infinite;
+    }
+    .donate-button:visited { color: var(--yellow); }
+    .donate-button:active  { border-style: inset; }
+    @keyframes wobble {
+      0%   { transform: rotate(-2deg); }
+      100% { transform: rotate(2deg); }
+    }
+
+    /* The "under construction" tape */
+    .construction {
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 1.8;
+      text-align: center;
+      background: repeating-linear-gradient(-45deg, var(--yellow) 0 14px, var(--red) 14px 28px);
+      padding: 10px;
+    }
+    .construction span { background: var(--yellow); padding: 4px 8px; }
+
+    footer {
+      text-align: center;
+      font-family: "VT323", monospace;
+      font-size: 20px;
+      color: var(--yellow);
+      background: var(--plum);
+      padding: 14px;
+    }
+
+    /* The big RSVP button at the top */
+    .rsvp-button {
+      display: inline-block;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(12px, 3.4vw, 16px);
+      color: var(--yellow);
+      background: var(--red);
+      text-decoration: none;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      border: 5px outset var(--tangerine);
+      animation: wobble 0.8s steps(2) infinite;
+    }
+    .rsvp-button:visited { color: var(--yellow); }
+    nav a.nav-rsvp { background: var(--yellow); color: var(--red); }
+
+    /* The brass band strip under the buttons */
+    .brass-band {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4%;
+      padding: 10px 16px 6px;
+      background: var(--yellow);
+      border-bottom: 4px solid var(--red);
+    }
+    .brass-band img { width: 24%; max-width: 170px; animation: bob 0.6s steps(2) infinite; }
+    .brass-band img.tuba { width: 19%; max-width: 130px; animation-delay: 0.3s; }
+    .brass-band { align-items: center; }
+    .brass-band .note {
+      font-size: clamp(22px, 5vw, 36px);
+      color: var(--plum);
+      animation: bob 0.5s steps(2) infinite reverse;
+    }
+    @keyframes bob {
+      0%   { transform: translateY(0) rotate(-3deg); }
+      100% { transform: translateY(-6px) rotate(3deg); }
+    }
+
+    .centre { text-align: center; }
+
+    /* Form boxes (used in both the postbox and the jukebox) */
+    input[type="text"], textarea {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 16px;          /* 16px stops iPhones zooming in when you tap a box */
+      padding: 8px;
+      margin: 4px 0 12px;
+      background: #fff;
+      color: var(--ink);
+      border: 3px inset #d9c9b0;
+    }
+    label { font-weight: bold; }
+    fieldset { border: none; padding: 0; margin: 0 0 12px; }
+    legend { font-weight: bold; padding: 0; }
+    label.choice { display: block; font-weight: normal; margin: 4px 0; }
+    .form-message { font-weight: bold; text-align: center; min-height: 1em; margin: 10px 0 0; }
+
+    /* --- THE POSTBOX --- */
+    .postbox {
+      max-width: 440px;
+      margin: 18px auto 6px;
+      padding: 0 12px;
+    }
+    .pb-cap {            /* the rounded top */
+      height: 54px;
+      margin: 0 -12px;
+      background: linear-gradient(90deg, #6e120b, var(--red) 35%, #d4382a 50%, var(--red) 70%, #6e120b);
+      border: 4px solid #3a0805;
+      border-radius: 50% 50% 6px 6px / 100% 100% 6px 6px;
+    }
+    .pb-body {
+      position: relative;
+      background: linear-gradient(90deg, #7a140d, var(--red) 25%, #d4382a 45%, var(--red) 70%, #6e120b);
+      border-left: 4px solid #3a0805;
+      border-right: 4px solid #3a0805;
+      padding: 16px 18px 24px;
+    }
+    .pb-slot {           /* the letter slot */
+      width: 70%;
+      height: 16px;
+      margin: 0 auto;
+      background: #111;
+      border-radius: 4px;
+      border-top: 6px solid #5a0e08;
+    }
+    .pb-cypher {         /* the crown and J II L letters */
+      display: block;
+      width: 120px;
+      margin: 16px auto 14px;
+    }
+    .pb-plate {          /* the white enamel sign, which holds the form */
+      background: #fffbea;
+      border: 4px double #333;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .plate-title {
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      text-align: center;
+      color: var(--red);
+      margin: 0 0 14px;
+    }
+    .pb-base {           /* the black bottom */
+      height: 28px;
+      margin: 0 -8px;
+      background: #1c1c1c;
+      border-radius: 3px;
+    }
+    .post-it, .play-it {
+      display: block;
+      margin: 6px auto 0;
+      font-family: "Press Start 2P", monospace;
+      font-size: 14px;
+      padding: 14px 20px;
+      color: var(--yellow);
+      background: var(--red);
+      border: 5px outset var(--tangerine);
+    }
+    .post-it:active, .play-it:active { border-style: inset; }
+    button { cursor: url("images/cursors/cursor-dog.png") 23 14, pointer; }
+    button:disabled { opacity: 0.6; }
+
+    /* the envelope that drops into the slot after posting */
+    .envelope {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      width: 90px;
+      height: 56px;
+      margin-left: -45px;
+      background:
+        linear-gradient(to bottom right, transparent 49%, #d8c7a0 50%) left top / 50% 60% no-repeat,
+        linear-gradient(to bottom left, transparent 49%, #d8c7a0 50%) right top / 50% 60% no-repeat,
+        #fff3d6;
+      border: 3px solid var(--ink);
+      display: none;
+      z-index: 4;
+    }
+    .envelope.posting {
+      display: block;
+      animation: post 2.2s steps(10) forwards;
+    }
+    @keyframes post {
+      0%   { transform: translateY(-50px) rotate(-10deg); opacity: 1; }
+      30%  { transform: translateY(-30px) rotate(8deg); opacity: 1; }
+      50%  { transform: translateY(-10px) rotate(-4deg); opacity: 1; }
+      85%  { transform: translateY(70px) rotate(0deg) scaleY(0.5); opacity: 1; }
+      100% { transform: translateY(80px) scaleY(0); opacity: 0; }
+    }
+    .postbox { scroll-margin-top: 90px; }   /* leaves room to see the envelope above the box */
+    /* once posted: hide the questions, show the thank-you */
+    .pb-plate .thanks { display: none; text-align: center; }
+    .pb-plate.sent > *:not(.thanks) { display: none; }
+    .pb-plate.sent .thanks { display: block; }
+
+    /* --- THE JUKEBOX --- */
+    .jukebox {
+      position: relative;
+      max-width: 420px;
+      margin: 18px auto 6px;
+    }
+    .jb-horn {
+      position: absolute;
+      top: 40px;
+      width: 130px;
+      animation: bob 0.6s steps(2) infinite;
+    }
+    .jb-horn.left  { left: -112px; animation-name: bob-flipped; }
+    @keyframes bob-flipped {
+      0%   { transform: scaleX(-1) translateY(0) rotate(-3deg); }
+      100% { transform: scaleX(-1) translateY(-6px) rotate(3deg); }
+    }
+    .jb-horn.right { right: -112px; animation-delay: 0.3s; }
+    .jb-arch {           /* the rounded rainbow top */
+      position: relative;
+      height: 150px;
+      border-radius: 210px 210px 0 0;
+      background: repeating-radial-gradient(circle at 50% 100%,
+        var(--yellow) 0 14px, var(--orange) 14px 28px, var(--tangerine) 28px 42px,
+        var(--hot-pink) 42px 56px, var(--plum) 56px 70px);
+      border: 6px solid #5a0e08;
+      border-bottom: none;
+      overflow: hidden;
+    }
+    .jb-lights {         /* the chasing light bulbs round the edge */
+      position: absolute;
+      inset: 4px 4px 0;
+      border-radius: 200px 200px 0 0;
+      border: 6px dotted #fff;
+      border-bottom: none;
+      animation: chase 0.6s steps(1) infinite;
+    }
+    @keyframes chase {
+      50% { border-color: var(--yellow); }
+    }
+    .jb-window {
+      position: absolute;
+      left: 18%; right: 18%; bottom: 14px;
+      background: #111;
+      color: var(--yellow);
+      font-family: "VT323", monospace;
+      font-size: 20px;
+      text-align: center;
+      padding: 6px 4px;
+      border: 4px ridge #bbb;
+      border-radius: 8px;
+    }
+    .jb-note { display: inline-block; animation: bob 0.4s steps(2) infinite; color: var(--pink); }
+    .jb-body {
+      background: var(--plum);
+      border-left: 6px solid #5a0e08;
+      border-right: 6px solid #5a0e08;
+      padding: 16px 18px 18px;
+    }
+    .jb-card {           /* each box looks like a jukebox song card */
+      background: #fff;
+      border: 3px solid #5a0e08;
+      border-top: 6px solid var(--tangerine);
+      padding: 8px 10px 0;
+      margin-bottom: 10px;
+    }
+    .jb-card label { font-family: "VT323", monospace; font-size: 20px; color: var(--red); }
+    .jb-card input { border: 2px dashed var(--light-pink); }
+    .jb-body .form-message { color: var(--yellow); }
+    .jb-grille {         /* the speaker at the bottom */
+      height: 70px;
+      background:
+        repeating-linear-gradient(90deg, #c0c0c0 0 6px, #6d6d6d 6px 9px),
+        #999;
+      border: 6px solid #5a0e08;
+      border-radius: 0 0 14px 14px;
+    }
+
+    /* The cat or dog that pops up where you tap on a phone */
+    .tap-pop {
+      position: absolute;
+      width: 46px;
+      margin: -40px 0 0 -23px;
+      pointer-events: none;
+      z-index: 999;
+      animation: tap-pop 0.8s steps(5) forwards;
+    }
+    @keyframes tap-pop {
+      0%   { transform: scale(0.4); opacity: 1; }
+      60%  { transform: translateY(-24px) scale(1.1); opacity: 1; }
+      100% { transform: translateY(-36px) scale(1); opacity: 0; }
+    }
+
+    /* --- SMALLER SCREENS (phones, tablets, narrow windows) ---
+       There's no room for stickers to hang off the sides, so they
+       tuck inside the boxes instead. */
+    @media (max-width: 1120px) {
+      .sticker, .sticker.right-side, .sticker.left-side {
+        position: relative;
+        left: auto; right: auto; top: auto;
+        float: right;
+        width: calc(var(--w, 170px) * 0.62);
+        margin: -26px -12px 6px 10px;
+      }
+      .sticker.left-side { float: left; margin: -26px 10px 6px -12px; }
+      header .sticker, header .sticker.left-side, header .sticker.right-side {
+        position: absolute;
+        float: none;
+        margin: 0;
+        width: 26%;
+        max-width: 150px;
+        bottom: 14px; top: auto;
+      }
+      .sticker.extra { display: none; }   /* too many for a small screen */
+      header .sticker.left-side  { left: 2px; right: auto; }
+      header .sticker.right-side { right: 2px; left: auto; }
+    }
+    @media (max-width: 760px) {
+      .jb-horn { position: static; display: inline-block; width: 30%; margin: 0 9% 6px; }
+      .jb-horn.left, .jb-horn.right { left: auto; right: auto; }
+    }
+    @media (max-width: 520px) {
+      .polaroid.right, .polaroid.left { width: 130px; }
+      .album { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Switches the animations off for anyone whose phone or computer
+       is set to "reduce motion" (some people find movement makes them dizzy) */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      .marquee span { padding-left: 16px; }
+      #dog { left: 20%; }
+      #cat { left: 65%; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ==========================================================
+       THE CONTENT (called "HTML")
+       Everything from here down is what guests read.
+       To change the words, just type over them.
+       ========================================================== -->
+
+  <div class="marquee">
+    <!-- The message is written twice so it can loop round and round without a gap -->
+    <span>*** JOJO &amp; LOUIS ARE GETTING MARRIED!!! *** SATURDAY 4TH SEPTEMBER 2027 *** WESTWELL HOUSE, TENTERDEN *** DRESS UP!!! *** JOJO &amp; LOUIS ARE GETTING MARRIED!!! *** SATURDAY 4TH SEPTEMBER 2027 *** WESTWELL HOUSE, TENTERDEN *** DRESS UP!!! </span>
+  </div>
+
+  <header>
+    <img class="sticker left-side extra" src="images/stickers/dinner.webp" alt="" style="--x: -200px; --y: 628px; --tilt: -6deg; --w: 180px">
+    <img class="sticker left-side" src="images/stickers/champagne.webp" alt="" style="--x: -190px; --y: 150px; --tilt: -9deg; --w: 220px">
+    <img class="sticker right-side" src="images/stickers/tache.webp" alt="" style="--x: -195px; --y: 140px; --tilt: 7deg; --w: 180px">
+    <h1>Jojo &amp; Louis</h1>
+    <div class="date-banner">SAT 04.09.2027</div><br>
+    <a class="rsvp-button" href="#rsvp">&#9993; RSVP HERE! &#9993;</a>
+    <img class="hero-photo" src="images/album2.jpg" alt="Jojo and Louis laughing together at a party">
+  </header>
+
+  <!-- The buttons. Each one jumps to the section with the matching id="..." -->
+  <nav>
+    <a href="#when">When</a>
+    <a href="#schedule">The Day</a>
+    <a href="#travel">Travel</a>
+    <a href="#stay">Hotels</a>
+    <a href="#dress">Dress</a>
+    <a href="#fund">Dog Fund</a>
+    <a href="#songs">Songs</a>
+    <a href="#rsvp" class="nav-rsvp">RSVP!</a>
+  </nav>
+
+  <!-- The brass band strip. The instruments are pictures in images/brass -->
+  <div class="brass-band" aria-hidden="true">
+    <img src="images/brass/trumpet.webp" alt="">
+    <span class="note">&#9834;</span>
+    <img src="images/brass/tuba.webp" alt="" class="tuba">
+    <span class="note">&#9835;</span>
+    <img src="images/brass/trombone.webp" alt="">
+  </div>
+
+  <section id="when">
+    <img class="sticker left-side extra" src="images/stickers/pub.webp" alt="" style="--x: -220px; --y: 302px; --tilt: 5deg; --w: 180px">
+    <img class="sticker left-side extra" src="images/stickers/relax.webp" alt="" style="--x: -218px; --y: 700px; --tilt: -4deg; --w: 190px">
+    <img class="sticker right-side extra" src="images/stickers/tent.webp" alt="" style="--x: -212px; --y: 471px; --tilt: 7deg; --w: 190px">
+    <img class="sticker right-side extra" src="images/stickers/church.webp" alt="" style="--x: -190px; --y: 835px; --tilt: -7deg; --w: 170px">
+    <img class="sticker right-side" src="images/stickers/lift.webp" alt="" style="--x: -195px; --y: -20px; --tilt: 7deg; --w: 200px">
+    <h2>We're getting married! <span class="new">NEW!</span></h2>
+    <div class="polaroid right" style="--tilt: 4deg"><img src="images/ring.jpg" alt="Jojo's hand showing her engagement ring">she said yes!</div>
+    <p><b>When:</b> Saturday 4th September 2027, arrive from 1:00pm</p>
+    <p><b>Where:</b> Westwell House (Jojo's parents' house)<br>
+      Rolvenden Road<br>
+      Tenterden<br>
+      TN30 6TT<br>
+      <a href="https://www.google.com/maps/search/?api=1&query=Westwell+House+Rolvenden+Road+Tenterden+TN30+6TT" target="_blank">&gt;&gt; Open in Google Maps &lt;&lt;</a>
+    </p>
+    <!-- The vintage postcard of the house -->
+    <div class="postcard">
+      <img src="images/house.jpg" alt="Westwell House, a red-brick house with a big lawn">
+      <div class="stamp">&hearts;<br>1st</div>
+      <div class="postmark">TENTERDEN<br>04.09.27</div>
+      <p class="postcard-caption">Greetings from Westwell House!</p>
+    </div>
+    <!-- The number of days left gets worked out automatically (see the bottom of this file) -->
+    <div class="countdown" id="countdown">ONLY ??? DAYS TO GO!</div>
+  </section>
+
+  <section id="schedule">
+    <img class="sticker left-side extra" src="images/stickers/beach.webp" alt="" style="--x: -168px; --y: 564px; --tilt: 7deg; --w: 120px">
+    <img class="sticker left-side" src="images/stickers/abseil.webp" alt="" style="--x: -200px; --y: 40px; --tilt: -7deg; --w: 190px">
+    <img class="sticker right-side" src="images/stickers/sunset.webp" alt="" style="--x: -140px; --y: 260px; --tilt: 5deg; --w: 120px">
+    <h2>Order of the Day</h2>
+    <table class="timetable">
+      <tr><td>1:00pm</td><td>Arrival</td></tr>
+      <tr><td>1:30pm</td><td>Ceremony</td></tr>
+      <tr><td>2:00pm</td><td>Drinks in the garden with canapés</td></tr>
+      <tr><td>3:30pm</td><td>A message from our sponsors</td></tr>
+      <tr><td>4:15pm</td><td>Head to the marquee</td></tr>
+      <tr><td>4:30pm</td><td>Let's eat!</td></tr>
+      <tr><td>6:30pm</td><td>Speeches</td></tr>
+      <tr><td>7:00pm</td><td>Cocktails</td></tr>
+      <tr><td>8:00pm</td><td>Boogie woogie</td></tr>
+      <tr><td>10:00pm</td><td>Pizza van</td></tr>
+      <tr><td>12:00am</td><td>Music off, fire pit and nightcaps</td></tr>
+    </table>
+  </section>
+
+  <section id="travel">
+    <img class="sticker right-side extra" src="images/stickers/cat-cuddle.webp" alt="" style="--x: -170px; --y: 75px; --tilt: 4deg; --w: 130px">
+    <img class="sticker right-side extra" src="images/stickers/chin.webp" alt="" style="--x: -218px; --y: 574px; --tilt: -5deg; --w: 190px">
+    <h2>Getting There</h2>
+    <div class="polaroid right" style="--tilt: -4deg"><img src="images/rocks.jpg" alt="Jojo and Louis standing on rocks by the sea">on our way!</div>
+    <h3>By train</h3>
+    <p>The nearest station is <b>Headcorn</b>, a 15 minute drive from the venue. Trains run from <b>London Charing Cross</b> and <b>London Bridge</b> a few times each hour.</p>
+    <p><b>There is no taxi rank at Headcorn station</b>, so please book a taxi ahead if you're coming by train. Some local taxi companies:</p>
+    <ul>
+      <li>Mazi Taxis: <a href="tel:+447494930977">07494 930977</a></li>
+      <li>MTC: <a href="tel:+441622890003">01622 890003</a></li>
+      <li>St Michaels &amp; Tenterden Taxis: <a href="tel:+441580762277">01580 762277</a></li>
+    </ul>
+    <h3>By car</h3>
+    <p>There is <b>no parking at the venue</b>, so please leave your car at your accommodation. We can give you directions to car parks in town, just ask!</p>
+    <div class="clear"></div>
+  </section>
+
+  <section id="stay">
+    <img class="sticker right-side extra" src="images/stickers/trio.webp" alt="" style="--x: -238px; --y: 404px; --tilt: 6deg; --w: 190px">
+    <img class="sticker left-side" src="images/stickers/carry.webp" alt="" style="--x: -185px; --y: 0px; --tilt: -6deg; --w: 170px">
+    <h2>Where to Stay</h2>
+    <!-- Each hotel name opens a Google Maps search for it -->
+    <table>
+      <tr><th>Hotel</th><th>How far?</th></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=The+Woolpack+Tenterden" target="_blank">The Woolpack</a></td><td>Walking distance</td></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=The+White+Horse+Tenterden" target="_blank">The White Horse</a></td><td>Walking distance</td></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=Little+Silver+Country+Hotel+Tenterden" target="_blank">Little Silver Country Hotel</a></td><td>Short drive</td></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=London+Beach+Hotel+Tenterden" target="_blank">London Beach</a></td><td>Short drive</td></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=King+Hotel+Tenterden" target="_blank">King Hotel</a></td><td>Short drive</td></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=The+Milk+House+Sissinghurst" target="_blank">The Milk House, Sissinghurst</a></td><td>15 minute drive</td></tr>
+      <tr><td><a href="https://www.google.com/maps/search/?api=1&query=The+George+Hotel+Cranbrook" target="_blank">The George, Cranbrook</a></td><td>15 minute drive</td></tr>
+    </table>
+  </section>
+
+  <section id="dress">
+    <img class="sticker right-side extra" src="images/stickers/hiker.webp" alt="" style="--x: -152px; --y: 277px; --tilt: -6deg; --w: 120px">
+    <h2>What to Wear</h2>
+    <div class="polaroid right" style="--tilt: 5deg"><img src="images/dressed-up.jpg" alt="Jojo and Louis dressed up at a wedding">like this!</div>
+    <p>Be colourful, be fun, <b>dress UP</b>. It's a wedding! Flamboyance welcomed.</p>
+    <p>Headwear is encouraged and admired, but not necessary.</p>
+    <p><b>We'll mainly be on grass</b>, so plan your footwear accordingly. Maybe leave the stilettos at home!</p>
+    <div class="clear"></div>
+  </section>
+
+  <section id="kids">
+    <img class="sticker left-side" src="images/stickers/pup.webp" alt="" style="--x: -195px; --y: -30px; --tilt: -6deg; --w: 180px">
+    <h2>Little Ones</h2>
+    <p>We love your little ones, but we're kindly asking that <b>children stay at home</b> for our big day.</p>
+    <p><b>Babes in arms are very welcome!</b></p>
+  </section>
+
+  <!-- ==========================================================
+       THE RSVP POSTBOX
+       Replies are sent using a free service called Formspree.
+       See "FORM ADDRESSES" near the bottom of this file.
+       ========================================================== -->
+  <section id="rsvp">
+    <img class="sticker left-side extra" src="images/stickers/tabby.webp" alt="" style="--x: -222px; --y: 146px; --tilt: -7deg; --w: 190px">
+    <img class="sticker left-side extra" src="images/stickers/bottle.webp" alt="" style="--x: -182px; --y: 523px; --tilt: 4deg; --w: 160px">
+    <img class="sticker left-side extra" src="images/stickers/jojo-cat.webp" alt="" style="--x: -200px; --y: 955px; --tilt: -5deg; --w: 180px">
+    <img class="sticker right-side extra" src="images/stickers/goldie.webp" alt="" style="--x: -212px; --y: 161px; --tilt: 5deg; --w: 190px">
+    <img class="sticker right-side extra" src="images/stickers/lab.webp" alt="" style="--x: -210px; --y: 524px; --tilt: -4deg; --w: 190px">
+    <img class="sticker right-side extra" src="images/stickers/summit.webp" alt="" style="--x: -190px; --y: 885px; --tilt: 7deg; --w: 150px">
+    <h2>RSVP</h2>
+    <p class="centre">Pop your reply in the postbox! <b>Please reply by 1st April 2027</b>.</p>
+
+    <div class="postbox">
+      <div class="pb-cap"></div>
+      <div class="pb-body">
+        <div class="pb-slot"></div>
+        <div class="envelope" id="envelope"></div>
+        <img class="pb-cypher" src="images/postbox-cypher.png" alt="A crown above the letters J II L">
+
+        <form id="rsvp-form" class="pb-plate">
+          <p class="plate-title">~ WEDDING POST ~</p>
+
+          <label for="rsvp-name">Your full name *</label>
+          <input id="rsvp-name" name="Full name" type="text" autocomplete="name" required>
+
+          <fieldset>
+            <legend>Can you come? *</legend>
+            <label class="choice"><input type="radio" name="Attending" value="Yes" required> Yes! Wouldn't miss it</label>
+            <label class="choice"><input type="radio" name="Attending" value="No"> Sadly, I can't make it</label>
+          </fieldset>
+
+          <label for="rsvp-others">Replying for someone else too? Put their full name(s) here</label>
+          <textarea id="rsvp-others" name="Also replying for" rows="2" placeholder="One name per line"></textarea>
+
+          <label for="rsvp-diet">Any dietary requirements?</label>
+          <textarea id="rsvp-diet" name="Dietary requirements" rows="3" placeholder="e.g. vegetarian, nut allergy. Include anyone you're replying for."></textarea>
+
+          <input type="hidden" name="_subject" value="New wedding RSVP!">
+          <button type="submit" class="post-it">POST IT!</button>
+          <p class="form-message" role="status"></p>
+
+          <!-- This bit only shows once a reply has been posted -->
+          <div class="thanks">
+            <p class="plate-title">~ DELIVERED ~</p>
+            <p>Thank you! Your RSVP is in the post.</p>
+            <button type="button" class="post-it" id="rsvp-again">SEND ANOTHER</button>
+          </div>
+        </form>
+      </div>
+      <div class="pb-base"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       THE JUKEBOX (song requests)
+       ========================================================== -->
+  <section id="songs">
+    <img class="sticker left-side extra" src="images/stickers/hangers.webp" alt="" style="--x: -230px; --y: 247px; --tilt: 6deg; --w: 190px">
+    <img class="sticker left-side extra" src="images/stickers/boat.webp" alt="" style="--x: -208px; --y: 641px; --tilt: -6deg; --w: 180px">
+    <img class="sticker right-side extra" src="images/stickers/clifftop.webp" alt="" style="--x: -138px; --y: 156px; --tilt: -7deg; --w: 110px">
+    <img class="sticker right-side extra" src="images/stickers/beer.webp" alt="" style="--x: -228px; --y: 635px; --tilt: 4deg; --w: 180px">
+    <h2>Request a Song</h2>
+    <p class="centre">Got a tune that'll get everyone dancing? Pop it in the jukebox!</p>
+
+    <div class="jukebox">
+      <img class="jb-horn left" src="images/brass/trumpet.webp" alt="">
+      <img class="jb-horn right" src="images/brass/trumpet.webp" alt="">
+      <div class="jb-arch">
+        <div class="jb-lights"></div>
+        <div class="jb-window">
+          <span class="jb-note">&#9834;</span> NOW TAKING REQUESTS <span class="jb-note">&#9835;</span>
+        </div>
+      </div>
+
+      <form id="song-form" class="jb-body">
+        <div class="jb-card">
+          <label for="song-title">Song *</label>
+          <input id="song-title" name="Song" type="text" required>
+        </div>
+        <div class="jb-card">
+          <label for="song-artist">Artist</label>
+          <input id="song-artist" name="Artist" type="text">
+        </div>
+        <div class="jb-card">
+          <label for="song-by">Requested by</label>
+          <input id="song-by" name="Requested by" type="text" autocomplete="name">
+        </div>
+        <input type="hidden" name="_subject" value="New song request!">
+        <button type="submit" class="play-it">PLAY IT!</button>
+        <p class="form-message" role="status"></p>
+      </form>
+
+      <div class="jb-grille"></div>
+    </div>
+  </section>
+
+  <section class="corkboard">
+    <img class="sticker left-side extra" src="images/stickers/sunset-jacket.webp" alt="" style="--x: -198px; --y: 269px; --tilt: 5deg; --w: 150px">
+    <img class="sticker left-side extra" src="images/stickers/wine.webp" alt="" style="--x: -202px; --y: 763px; --tilt: -4deg; --w: 170px">
+    <img class="sticker right-side extra" src="images/stickers/blue-jacket.webp" alt="" style="--x: -212px; --y: 281px; --tilt: -5deg; --w: 180px">
+    <!-- To add a photo: copy one of these lines and change the file name -->
+    <div class="album">
+      <div class="polaroid"><img src="images/album1.jpg" alt="Jojo and Louis in a pink-lit room"></div>
+      <div class="polaroid"><img src="images/mountain.jpg" alt="Jojo and Louis on a mountain top"></div>
+      <div class="polaroid"><img src="images/us.jpg" alt="Jojo and Louis smiling together at a party"></div>
+      <div class="polaroid"><img src="images/snow.jpg" alt="Jojo and Louis in the snow"></div>
+      <div class="polaroid"><img src="images/flowers.jpg" alt="Jojo and Louis under hanging flowers"></div>
+      <div class="polaroid"><img src="images/album3.jpg" alt="Louis at sunset by the sea"></div>
+      <div class="polaroid"><img src="images/view.jpg" alt="Jojo and Louis in sunglasses with a view behind them"></div>
+      <div class="polaroid"><img src="images/album4.jpg" alt="Jojo surrounded by giant balloons"></div>
+      <div class="polaroid"><img src="images/album5.jpg" alt="Louis cheering on a London street"></div>
+    </div>
+  </section>
+
+  <section class="fund" id="fund">
+    <img class="sticker right-side" src="images/stickers/doggo.webp" alt="" style="--x: -190px; --y: -30px; --tilt: 6deg; --w: 200px">
+    <h2>The Golden Retriever Fund</h2>
+    <!-- The pixel dog gets drawn in here by the code at the bottom -->
+    <div class="dog-track" aria-hidden="true">
+      <svg id="dog" viewBox="0 0 20 13" shape-rendering="crispEdges"></svg>
+      <svg id="cat" viewBox="0 0 15 13" shape-rendering="crispEdges"></svg>
+      <div class="bubble" id="hiss">HISS!</div>
+      <div class="bubble" id="yikes">YIKES!</div>
+    </div>
+    <p>Gifts are appreciated but <b>definitely not expected!</b> If you'd like to give something, help us welcome a very good boy into the family.</p>
+    <p>If you send a cash gift, please <b>add your name in the note</b> so we know who to thank.</p>
+    <p><a class="donate-button" href="https://paypal.me/jojolouis2027" target="_blank">DONATE TO THE<br>DOG FUND!!!</a></p>
+  </section>
+
+  <div class="construction"><span>MORE INFO COMING SOON ~ THIS SITE IS UNDER CONSTRUCTION</span></div>
+
+  <footer>
+    Made with love by Jojo &amp; Louis &copy; 2027<br>
+    Best viewed in Netscape Navigator at 800x600
+  </footer>
+
+</div>
+
+<script>
+  // ============================================================
+  // THE MOVING PARTS (called "JavaScript")
+  // You shouldn't need to change anything below this line.
+  // ============================================================
+
+  // --- 1. The countdown to the wedding ---
+  var weddingDay = new Date(2027, 8, 4); // months count from 0, so 8 = September
+  var daysLeft = Math.ceil((weddingDay - new Date()) / (1000 * 60 * 60 * 24));
+  var countdown = document.getElementById("countdown");
+  if (daysLeft > 1) {
+    countdown.textContent = "ONLY " + daysLeft + " DAYS TO GO!";
+  } else if (daysLeft === 1) {
+    countdown.textContent = "TOMORROW!!!";
+  } else if (daysLeft === 0) {
+    countdown.textContent = "IT'S TODAY!!!";
+  } else {
+    countdown.textContent = "WE DID IT! THANKS FOR COMING!";
+  }
+
+  // --- 2. The pixel golden retriever and Cat Martini ---
+  // Each letter is one square: G = gold, D = dark gold, K = black, W = white,
+  // Y = yellow, P = pink, . = empty.
+  // Each animal has two pictures (legs in, legs out) that swap to make it walk.
+  var dogBody = [
+    "..............DD....",
+    ".............DGGG...",
+    "............DGGKGG..",
+    "............DGGGGGGK",
+    ".............GGGGGG.",
+    "D...........GGGGP...",
+    "DD.GGGGGGGGGGGG.P...",
+    ".DGGGGGGGGGGGGG.....",
+    "..GGGGGGGGGGGGG....."
+  ];
+  var dogLegsA = [
+    "..GGGGGGGGGGGGG.....",
+    "..GG.GG....GG.GG....",
+    "..GG.GG....GG.GG....",
+    "..DD.DD....DD.DD...."
+  ];
+  var dogLegsB = [
+    "..GGGGGGGGGGGGG.....",
+    "..GG..GG..GG..GG....",
+    ".GG....GG.GG...GG...",
+    ".DD....DD.DD...DD..."
+  ];
+  // Cat Martini faces left (towards the dog)
+  var catBody = [
+    "...............",
+    "...............",
+    "K...K..........",
+    "KK.KK.........K",
+    "KKKKK........K.",
+    "KYKYK........K.",
+    "KKPKK........K.",
+    ".KWWKKKKKKKKKK.",
+    ".KWWKKKKKKKKKK.",
+    ".KWKKKKKKKKKKK."
+  ];
+  var catHissBody = [
+    "...............",
+    "K...K......K..K",
+    "KK.KK.....KK.K.",
+    "KKKKK...KKKKKK.",
+    "KYKYK..KKKKKK..",
+    "KPPPK.KKKKKKK..",
+    "KKPKKKKKKKKKK..",
+    ".KWWKKKKKKKKK..",
+    ".KWWKK....KKK..",
+    ".KWK.K.....KK.."
+  ];
+  var catLegsA = [
+    ".KK.K.....KK.K.",
+    ".KK.K.....KK.K.",
+    ".WW.W.....WW.W."
+  ];
+  var catLegsB = [
+    "..KK.K...K..KK.",
+    "..KK.K...K..KK.",
+    "..WW.W...W..WW."
+  ];
+  var colours = { G: "#e9a53f", D: "#b8741a", K: "#111111", W: "#ffffff", Y: "#f9de6f", P: "#ed71c0" };
+
+  function draw(id, rows) {
+    var svg = "";
+    rows.forEach(function (row, y) {
+      row.split("").forEach(function (letter, x) {
+        if (colours[letter]) {
+          svg += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + colours[letter] + '"/>';
+        }
+      });
+    });
+    document.getElementById(id).innerHTML = svg;
+  }
+
+  var track = document.querySelector(".dog-track");
+  var dog = document.getElementById("dog");
+  var cat = document.getElementById("cat");
+  var hiss = document.getElementById("hiss");
+  var yikes = document.getElementById("yikes");
+
+  function place(el, x) { el.style.left = Math.round(x) + "px"; }
+
+  draw("dog", dogBody.concat(dogLegsA));
+  draw("cat", catBody.concat(catLegsA));
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // No movement: the dog and cat just sit in the lane
+    dog.style.left = ""; cat.style.left = "";
+  } else {
+    // The story, one step at a time:
+    // walk -> cat arrives -> HISS! -> dog runs back -> cat strolls off -> rest -> repeat
+    var stage = "walk", dogX = -90, catX = 9999, count = 0, legs = 0;
+
+    setInterval(function () {
+      var width = track.clientWidth;
+      legs = 1 - legs;
+      var dogLegs = legs ? dogLegsB : dogLegsA;
+      var catLegs = legs ? catLegsB : catLegsA;
+      var dogHop = 0, dogFlip = false, catFlip = false, catPic = catBody.concat(catLegs);
+
+      if (stage === "walk") {
+        dogX += 8;
+        if (dogX > width * 0.3) { stage = "cat-arrives"; catX = width + 10; }
+      } else if (stage === "cat-arrives") {
+        dogX += 4;
+        catX -= 12;
+        if (catX <= dogX + 120) { stage = "hiss"; count = 0; }
+      } else if (stage === "hiss") {
+        count++;
+        dogLegs = dogLegsA;
+        dogHop = (count % 2) * 10;   // the dog jumps with fright
+        catPic = catHissBody.concat(catLegsA);
+        if (count > 9) { stage = "run"; }
+      } else if (stage === "run") {
+        dogFlip = true;
+        dogX -= 20;
+        catPic = catBody.concat(catLegsA);
+        if (dogX < -110) { stage = "cat-leaves"; }
+      } else if (stage === "cat-leaves") {
+        catFlip = true;
+        catX += 10;
+        if (catX > width + 20) { stage = "rest"; count = 0; }
+      } else if (stage === "rest") {
+        count++;
+        if (count > 8) { stage = "walk"; dogX = -90; catX = 9999; }
+      }
+
+      draw("dog", dogBody.concat(dogLegs));
+      draw("cat", catPic);
+      place(dog, dogX);
+      place(cat, catX);
+      dog.style.bottom = dogHop + "px";
+      dog.style.transform = dogFlip ? "scaleX(-1)" : "none";
+      cat.style.transform = catFlip ? "scaleX(-1)" : "none";
+
+      var scared = stage === "hiss";
+      hiss.style.display = scared ? "block" : "none";
+      yikes.style.display = scared ? "block" : "none";
+      place(hiss, catX - 10);
+      place(yikes, dogX - 20);
+    }, 150);
+  }
+
+  // --- 3. The RSVP and song request forms ---
+  // FORM ADDRESSES: paste your two Formspree addresses between the quote marks.
+  // Until you do, the forms run in "practice mode": the animation plays but nothing is sent.
+  var RSVP_FORM_ADDRESS = "https://formspree.io/f/mbggdnyq";
+  var SONG_FORM_ADDRESS = "https://formspree.io/f/mjyygnrz";
+
+  function hookUpForm(formId, address, sentMessage, onSent) {
+    var form = document.getElementById(formId);
+    var message = form.querySelector(".form-message");
+    var button = form.querySelector("button");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (address.indexOf("YOUR_") !== -1) {
+        onSent();
+        message.textContent = "Practice mode: this wasn't really sent yet (see FORM ADDRESSES in the code).";
+        return;
+      }
+      button.disabled = true;
+      message.textContent = "Sending...";
+      fetch(address, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (response) {
+          if (!response.ok) { throw new Error("not sent"); }
+          onSent();
+          message.textContent = sentMessage;
+          form.reset();
+        })
+        .catch(function () {
+          message.textContent = "Oops, that didn't send. Please try again, or message Jojo or Louis.";
+        })
+        .then(function () { button.disabled = false; });
+    });
+  }
+
+  hookUpForm("rsvp-form", RSVP_FORM_ADDRESS, "Thank you! Your RSVP is in the post.", function () {
+    // 1. swap the questions for the thank-you message, so the postbox gets shorter
+    document.getElementById("rsvp-form").classList.add("sent");
+    // 2. scroll so the top of the postbox is on screen
+    document.querySelector(".postbox").scrollIntoView({ behavior: "smooth", block: "start" });
+    // 3. once the scrolling has finished, drop the envelope into the slot
+    var envelope = document.getElementById("envelope");
+    envelope.classList.remove("posting");
+    setTimeout(function () {
+      void envelope.offsetWidth;   // restarts the animation
+      envelope.classList.add("posting");
+    }, 800);
+  });
+  document.getElementById("rsvp-again").addEventListener("click", function () {
+    document.getElementById("rsvp-form").classList.remove("sent");
+  });
+  hookUpForm("song-form", SONG_FORM_ADDRESS, "Great choice! Your request is on the list.", function () {});
+
+  // --- 4. Phones and tablets don't have a mouse cursor, so instead
+  //        Cat Martini pops up wherever you tap (or the dog, on a link or button) ---
+  if (window.matchMedia("(hover: none)").matches) {
+    document.addEventListener("pointerdown", function (event) {
+      var onLink = event.target.closest("a, button");
+      var pop = document.createElement("img");
+      pop.src = onLink ? "images/cursors/cursor-dog.png" : "images/cursors/cursor-cat.png";
+      pop.className = "tap-pop";
+      pop.alt = "";
+      pop.style.left = event.pageX + "px";
+      pop.style.top = event.pageY + "px";
+      document.body.appendChild(pop);
+      setTimeout(function () { pop.remove(); }, 900);
+    });
+  }
+</script>
+</body>
+</html>
