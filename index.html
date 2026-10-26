@@ -32,14 +32,16 @@
     /* --- YOUR COLOURS (from the Website Vibe doc).
            Change a code here and it changes everywhere. --- */
     :root {
-      --yellow:      #f9de6f;
-      --orange:      #f09056;
-      --red:         #ae2317;
-      --plum:        #b52f70;
-      --pink:        #ed71c0;
-      --tangerine:   #ec6a3f;
-      --light-pink:  #ee8ac1;
-      --hot-pink:    #ea56b4;
+      /* turned up brighter than the Website Vibe doc for extra zing */
+      --yellow:      #ffe234;
+      --orange:      #ff8c3a;
+      --red:         #d1160c;
+      --plum:        #c4127a;
+      --pink:        #ff5cc8;
+      --tangerine:   #ff5a1f;
+      --light-pink:  #ff9ad8;
+      --hot-pink:    #ff2fa8;
+      --lime:        #9dff2e;
       --paper:       #fff6e4;   /* the cream colour of the main page */
       --ink:         #4a1030;   /* the colour of normal text */
     }
@@ -168,13 +170,35 @@
       border: 4px dashed var(--hot-pink);
     }
     section:nth-of-type(even) { border-color: var(--tangerine); }
+    /* --- THE FLASHING SECTION HEADINGS ---
+       Each heading is a bright little sign that flashes, swapping its
+       text and background colours. Every other section uses lime instead of yellow. */
     h2 {
+      display: inline-block;
       font-family: "Press Start 2P", monospace;
-      font-size: clamp(14px, 4vw, 18px);
+      font-size: clamp(17px, 5vw, 26px);
       line-height: 1.5;
-      margin: 0 0 12px;
-      color: var(--red);
-      text-shadow: 2px 2px 0 var(--yellow);
+      margin: 0 0 16px;
+      padding: 10px 14px;
+      color: var(--hot-pink);                  /* (used if animations are switched off) */
+      text-shadow: 2px 2px 0 var(--plum);
+      background: var(--yellow);
+      border: 4px dashed var(--plum);
+      transform: rotate(-1.5deg);
+      animation: flash-yellow 0.9s steps(1) infinite;
+    }
+    section:nth-of-type(even) h2 {
+      transform: rotate(1.5deg);
+      animation-name: flash-lime;
+    }
+    /* the sign swaps its text and background colours on each flash */
+    @keyframes flash-yellow {
+      0%  { background: var(--yellow);   color: var(--hot-pink); text-shadow: 2px 2px 0 var(--plum); }
+      50% { background: var(--hot-pink); color: var(--yellow);   text-shadow: 2px 2px 0 var(--plum); }
+    }
+    @keyframes flash-lime {
+      0%  { background: var(--lime);     color: var(--hot-pink); text-shadow: 2px 2px 0 var(--plum); }
+      50% { background: var(--hot-pink); color: var(--lime);     text-shadow: 2px 2px 0 var(--plum); }
     }
     h3 {
       font-family: "Permanent Marker", "Comic Sans MS", cursive;
@@ -656,7 +680,7 @@
     .jb-horn.right { right: -112px; animation-delay: 0.3s; }
     .dancing-cat {
       display: block;
-      width: 110px;
+      width: 86px;
       margin: 0 auto -4px;
       position: relative;
       z-index: 2;
@@ -764,6 +788,12 @@
       .jb-horn { position: static; display: inline-block; width: 30%; margin: 0 9% 6px; }
       .jb-horn.left, .jb-horn.right { left: auto; right: auto; }
     }
+    /* In a window that's wider than a phone but too narrow for the stickers
+       to fit down the sides, hide all the stickers */
+    @media (min-width: 521px) and (max-width: 1279px) {
+      .sticker { display: none !important; }
+    }
+
     /* Things that only appear on phones */
     .phone-only { display: none; }
     .postcard .postcard-sticker {
@@ -862,7 +892,7 @@
     </p>
     <!-- The vintage postcard of the house -->
     <div class="postcard">
-      <img src="images/house.jpg" alt="Westwell House, a red-brick house seen across a rose garden">
+      <img src="images/house-garden.jpg" alt="Westwell House, a red-brick house seen across a rose garden">
       <img class="postcard-sticker phone-only" src="images/stickers/lift.webp" alt="">
       <div class="stamp">&hearts;<br>1st</div>
       <div class="postmark">TENTERDEN<br>04.09.27</div>
@@ -1011,7 +1041,7 @@
 
     <div class="jukebox">
       <!-- Cat Martini, dancing on top of the jukebox (drawn by the code at the bottom) -->
-      <svg id="dancing-cat" class="dancing-cat" viewBox="0 0 16 17" shape-rendering="crispEdges" aria-hidden="true"></svg>
+      <svg id="dancing-cat" class="dancing-cat" viewBox="0 0 14 20" shape-rendering="crispEdges" aria-hidden="true"></svg>
       <img class="jb-horn left" src="images/brass/trumpet.webp" alt="">
       <img class="jb-horn right" src="images/brass/trumpet.webp" alt="">
       <div class="jb-arch">
@@ -1064,7 +1094,6 @@
   </section>
 
   <section class="fund" id="fund">
-    <img class="sticker right-side phone-hide" src="images/stickers/doggo.webp" alt="" style="--x: -190px; --y: -30px; --tilt: 6deg; --w: 200px">
     <h2>Gifts</h2>
     <!-- The pixel dog gets drawn in here by the code at the bottom -->
     <div class="dog-track" aria-hidden="true">
@@ -1257,10 +1286,10 @@
   // --- 2b. Cat Martini's dance on the jukebox ---
   // Four pictures: arms up, left arm up, arms down, right arm up.
   var danceFrames = [
-    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "W.KKKKKKKKKKKK.W", "K.KKYKKKKKKYKK.K", "K.KKKKWPPWKKKK.K", ".K.KKKWWWWKKK.K.", ".K..KKKWWKKK..K.", "..KKKKWWWWKKKK..", "...KKKWWWWKKK...", "...KKKKWWKKKK...", "...KKKKKKKKKK..K", "...KKKKKKKKKK..K", "...KKK....KKK.K.", "..KKK......KKK..", "..WWW......WWW.."],
-    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "W.KKKKKKKKKKKK..", "K.KKYKKKKKKYKK..", "K.KKKKWPPWKKKK..", ".K.KKKWWWWKKK...", ".K..KKKWWKKK....", "..KKKKWWWWKKKK..", "...KKKWWWWKKKK..", "...KKKKWWKKKK.K.", "...KKKKKKKKKK.WK", "...KKKKKKKKKK..K", "....KKK..KKK..K.", "....KKK..KKK.K..", "....WWW..WWWK..."],
-    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "..KKKKKKKKKKKK..", "..KKYKKKKKKYKK..", "..KKKKWPPWKKKK..", "...KKKWWWWKKK...", "....KKKWWKKK....", "..KKKKWWWWKKKK..", "..KKKKWWWWKKKK..", ".K.KKKKWWKKKK.K.", ".K.KKKKKKKKKK.WK", ".W.KKKKKKKKKK..K", "...KKK....KKK.K.", "..KKK......KKK..", "..WWW......WWW.."],
-    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "..KKKKKKKKKKKK.W", "..KKYKKKKKKYKK.K", "..KKKKWPPWKKKK.K", "...KKKWWWWKKK.K.", "....KKKWWKKK..K.", "..KKKKWWWWKKKK..", "..KKKKWWWWKKK...", ".K.KKKKWWKKKK...", ".K.KKKKKKKKKK..K", ".W.KKKKKKKKKK..K", "....KKK..KKK..K.", "....KKK..KKK.K..", "....WWW..WWWK..."]
+    ["..............", "..K........K..", "..KK......KK..", "..KKKKKKKKKK..", "W.KKKKKKKKKK.W", "K.KYKKKKKKYK.K", ".KKKKWPPWKKKK.", ".K.KKWWWWKK.K.", ".K..KKWWKK..K.", "..KKKKWWKKKK..", "...KKWWWWKK...", "...KKWWWWKK...", "...KKKWWKKK...", "...KKKKKKKK...", "...KKKKKKKK...", "...KKKKKKKK..K", "...KK....KK..K", "...KK....KK..K", "..KK......KKK.", "..WW......WW.."],
+    ["..............", "..K........K..", "..KK......KK..", "..KKKKKKKKKK..", "W.KKKKKKKKKK..", "K.KYKKKKKKYK..", ".KKKKWPPWKKK..", ".K.KKWWWWKK...", ".K..KKWWKK....", "..KKKKWWKKKK..", "...KKWWWWKKK..", "...KKWWWWKKK..", "...KKKWWKKK.K.", "...KKKKKKKK.K.", "...KKKKKKKK.W.", "...KKKKKKKK..K", "....KK..KK...K", "....KK..KK...K", "....KK..KK..K.", "....WW..WW.K.."],
+    ["..............", "..K........K..", "..KK......KK..", "..KKKKKKKKKK..", "..KKKKKKKKKK..", "..KYKKKKKKYK..", "..KKKWPPWKKK..", "...KKWWWWKK...", "....KKWWKK....", "..KKKKWWKKKK..", "..KKKWWWWKKK..", "..KKKWWWWKKK..", ".K.KKKWWKKK.K.", ".K.KKKKKKKK.K.", ".W.KKKKKKKK.W.", "...KKKKKKKK..K", "...KK....KK..K", "...KK....KK..K", "..KK......KKK.", "..WW......WW.."],
+    ["..............", "..K........K..", "..KK......KK..", "..KKKKKKKKKK..", "..KKKKKKKKKK.W", "..KYKKKKKKYK.K", "..KKKWPPWKKKK.", "...KKWWWWKK.K.", "....KKWWKK..K.", "..KKKKWWKKKK..", "..KKKWWWWKK...", "..KKKWWWWKK...", ".K.KKKWWKKK...", ".K.KKKKKKKK...", ".W.KKKKKKKK...", "...KKKKKKKK..K", "....KK..KK...K", "....KK..KK...K", "....KK..KK..K.", "....WW..WW.K.."]
   ];
   // How the whole cat leans and bounces on each beat
   var danceMoves = ["translateY(-6px)", "translateX(-5px) rotate(-8deg)", "translateY(0)", "translateX(5px) rotate(8deg)"];
