@@ -644,7 +644,7 @@
     }
     .jb-horn {
       position: absolute;
-      top: 40px;
+      top: 70px;
       width: 130px;
       animation: bob 0.6s steps(2) infinite;
     }
@@ -654,6 +654,13 @@
       100% { transform: scaleX(-1) translateY(-6px) rotate(3deg); }
     }
     .jb-horn.right { right: -112px; animation-delay: 0.3s; }
+    .dancing-cat {
+      display: block;
+      width: 110px;
+      margin: 0 auto -4px;
+      position: relative;
+      z-index: 2;
+    }
     .jb-arch {           /* the rounded rainbow top */
       position: relative;
       height: 150px;
@@ -721,7 +728,7 @@
       margin: -40px 0 0 -23px;
       pointer-events: none;
       z-index: 999;
-      animation: tap-pop 0.8s steps(5) forwards;
+      animation: tap-pop 1.6s steps(8) forwards;
     }
     @keyframes tap-pop {
       0%   { transform: scale(0.4); opacity: 1; }
@@ -757,9 +764,29 @@
       .jb-horn { position: static; display: inline-block; width: 30%; margin: 0 9% 6px; }
       .jb-horn.left, .jb-horn.right { left: auto; right: auto; }
     }
+    /* Things that only appear on phones */
+    .phone-only { display: none; }
+    .postcard .postcard-sticker {
+      display: none;
+      position: absolute;
+      right: -14px;
+      bottom: -24px;
+      width: 46%;
+      transform: rotate(6deg);
+      filter: drop-shadow(3px 4px 0 rgba(74, 16, 48, 0.35));
+      border: none !important;
+    }
+    .album-sticker img {
+      width: 100%;
+      transform: rotate(5deg);
+      filter: drop-shadow(3px 4px 0 rgba(60, 30, 10, 0.4));
+    }
     @media (max-width: 520px) {
       .polaroid.right, .polaroid.left { width: 130px; }
       .album { grid-template-columns: 1fr 1fr; }
+      .phone-only, .postcard .postcard-sticker { display: block; }
+      .phone-hide { display: none !important; }
+      .sticker.phone-right { float: right; margin: -26px -12px 6px 10px; }
     }
 
     /* Switches the animations off for anyone whose phone or computer
@@ -823,7 +850,7 @@
     <img class="sticker left-side extra" src="images/stickers/relax.webp" alt="" style="--x: -218px; --y: 700px; --tilt: -4deg; --w: 190px">
     <img class="sticker right-side extra" src="images/stickers/tent.webp" alt="" style="--x: -212px; --y: 471px; --tilt: 7deg; --w: 190px">
     <img class="sticker right-side extra" src="images/stickers/church.webp" alt="" style="--x: -190px; --y: 835px; --tilt: -7deg; --w: 170px">
-    <img class="sticker right-side" src="images/stickers/lift.webp" alt="" style="--x: -195px; --y: -20px; --tilt: 7deg; --w: 200px">
+    <img class="sticker right-side phone-hide" src="images/stickers/lift.webp" alt="" style="--x: -195px; --y: -20px; --tilt: 7deg; --w: 200px">
     <h2>We're getting married! <span class="new">NEW!</span></h2>
     <div class="polaroid right" style="--tilt: 4deg"><img src="images/ring.jpg" alt="Jojo's hand showing her engagement ring">she said yes!</div>
     <p><b>When:</b> Saturday 4th September 2027, arrive from 1:00pm</p>
@@ -835,7 +862,8 @@
     </p>
     <!-- The vintage postcard of the house -->
     <div class="postcard">
-      <img src="images/house.jpg" alt="Westwell House, a red-brick house with a big lawn">
+      <img src="images/house.jpg" alt="Westwell House, a red-brick house seen across a rose garden">
+      <img class="postcard-sticker phone-only" src="images/stickers/lift.webp" alt="">
       <div class="stamp">&hearts;<br>1st</div>
       <div class="postmark">TENTERDEN<br>04.09.27</div>
     </div>
@@ -883,7 +911,7 @@
 
   <section id="stay">
     <img class="sticker right-side extra" src="images/stickers/trio.webp" alt="" style="--x: -238px; --y: 404px; --tilt: 6deg; --w: 190px">
-    <img class="sticker left-side" src="images/stickers/carry.webp" alt="" style="--x: -185px; --y: 0px; --tilt: -6deg; --w: 170px">
+    <img class="sticker left-side phone-right" src="images/stickers/carry.webp" alt="" style="--x: -185px; --y: 0px; --tilt: -6deg; --w: 170px">
     <h2>Where to Stay</h2>
     <!-- Each hotel name opens a Google Maps search for it -->
     <table>
@@ -909,7 +937,7 @@
   </section>
 
   <section id="kids">
-    <img class="sticker left-side" src="images/stickers/pup.webp" alt="" style="--x: -195px; --y: -30px; --tilt: -6deg; --w: 180px">
+    <img class="sticker left-side phone-right" src="images/stickers/pup.webp" alt="" style="--x: -195px; --y: -30px; --tilt: -6deg; --w: 180px">
     <h2>Children</h2>
     <p>This is an adults only event, but babes in arms are welcome.</p>
   </section>
@@ -982,6 +1010,8 @@
     <p class="centre">Got a tune that'll get everyone dancing? Pop it in the jukebox!</p>
 
     <div class="jukebox">
+      <!-- Cat Martini, dancing on top of the jukebox (drawn by the code at the bottom) -->
+      <svg id="dancing-cat" class="dancing-cat" viewBox="0 0 16 17" shape-rendering="crispEdges" aria-hidden="true"></svg>
       <img class="jb-horn left" src="images/brass/trumpet.webp" alt="">
       <img class="jb-horn right" src="images/brass/trumpet.webp" alt="">
       <div class="jb-arch">
@@ -1028,11 +1058,13 @@
       <div class="polaroid"><img src="images/view.jpg" alt="Jojo and Louis in sunglasses with a view behind them"></div>
       <div class="polaroid"><img src="images/album4.jpg" alt="Jojo surrounded by giant balloons"></div>
       <div class="polaroid"><img src="images/album5.jpg" alt="Louis cheering on a London street"></div>
+      <!-- only shows on phones, to fill the last gap on the board -->
+      <div class="album-sticker phone-only"><img src="images/stickers/doggo.webp" alt=""></div>
     </div>
   </section>
 
   <section class="fund" id="fund">
-    <img class="sticker right-side" src="images/stickers/doggo.webp" alt="" style="--x: -190px; --y: -30px; --tilt: 6deg; --w: 200px">
+    <img class="sticker right-side phone-hide" src="images/stickers/doggo.webp" alt="" style="--x: -190px; --y: -30px; --tilt: 6deg; --w: 200px">
     <h2>Gifts</h2>
     <!-- The pixel dog gets drawn in here by the code at the bottom -->
     <div class="dog-track" aria-hidden="true">
@@ -1222,6 +1254,27 @@
     }, 150);
   }
 
+  // --- 2b. Cat Martini's dance on the jukebox ---
+  // Four pictures: arms up, left arm up, arms down, right arm up.
+  var danceFrames = [
+    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "W.KKKKKKKKKKKK.W", "K.KKYKKKKKKYKK.K", "K.KKKKWPPWKKKK.K", ".K.KKKWWWWKKK.K.", ".K..KKKWWKKK..K.", "..KKKKWWWWKKKK..", "...KKKWWWWKKK...", "...KKKKWWKKKK...", "...KKKKKKKKKK..K", "...KKKKKKKKKK..K", "...KKK....KKK.K.", "..KKK......KKK..", "..WWW......WWW.."],
+    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "W.KKKKKKKKKKKK..", "K.KKYKKKKKKYKK..", "K.KKKKWPPWKKKK..", ".K.KKKWWWWKKK...", ".K..KKKWWKKK....", "..KKKKWWWWKKKK..", "...KKKWWWWKKKK..", "...KKKKWWKKKK.K.", "...KKKKKKKKKK.WK", "...KKKKKKKKKK..K", "....KKK..KKK..K.", "....KKK..KKK.K..", "....WWW..WWWK..."],
+    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "..KKKKKKKKKKKK..", "..KKYKKKKKKYKK..", "..KKKKWPPWKKKK..", "...KKKWWWWKKK...", "....KKKWWKKK....", "..KKKKWWWWKKKK..", "..KKKKWWWWKKKK..", ".K.KKKKWWKKKK.K.", ".K.KKKKKKKKKK.WK", ".W.KKKKKKKKKK..K", "...KKK....KKK.K.", "..KKK......KKK..", "..WWW......WWW.."],
+    ["................", "..K..........K..", "..KK........KK..", "..KKKKKKKKKKKK..", "..KKKKKKKKKKKK.W", "..KKYKKKKKKYKK.K", "..KKKKWPPWKKKK.K", "...KKKWWWWKKK.K.", "....KKKWWKKK..K.", "..KKKKWWWWKKKK..", "..KKKKWWWWKKK...", ".K.KKKKWWKKKK...", ".K.KKKKKKKKKK..K", ".W.KKKKKKKKKK..K", "....KKK..KKK..K.", "....KKK..KKK.K..", "....WWW..WWWK..."]
+  ];
+  // How the whole cat leans and bounces on each beat
+  var danceMoves = ["translateY(-6px)", "translateX(-5px) rotate(-8deg)", "translateY(0)", "translateX(5px) rotate(8deg)"];
+  var beat = 0;
+  var dancer = document.getElementById("dancing-cat");
+  draw("dancing-cat", danceFrames[0]);
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    setInterval(function () {
+      beat = (beat + 1) % danceFrames.length;
+      draw("dancing-cat", danceFrames[beat]);
+      dancer.style.transform = danceMoves[beat];
+    }, 250);
+  }
+
   // --- 3. The RSVP and song request forms ---
   // FORM ADDRESSES: paste your two Formspree addresses between the quote marks.
   // Until you do, the forms run in "practice mode": the animation plays but nothing is sent.
@@ -1285,7 +1338,7 @@
       pop.style.left = event.pageX + "px";
       pop.style.top = event.pageY + "px";
       document.body.appendChild(pop);
-      setTimeout(function () { pop.remove(); }, 900);
+      setTimeout(function () { pop.remove(); }, 1700);
     });
   }
 </script>
